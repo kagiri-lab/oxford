@@ -1,6 +1,8 @@
 <?php
 
-$this->title = "{{site-name}}"
+$this->title = "{{site-name}}";
+
+print_r($voteLogs);
 
 ?>
 

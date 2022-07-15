@@ -6,6 +6,7 @@ use app\controllers\dashboard\AgentsController;
 use app\controllers\dashboard\AuthController;
 use app\controllers\dashboard\CandidateController;
 use app\controllers\dashboard\DashboardController;
+use app\controllers\dashboard\VotesController;
 use kilyte\Application;
 
 class Dashboard
@@ -60,5 +61,9 @@ class Dashboard
         $route->post(AgentsController::class, [
             '/register' => 'registerAgent'
         ], 'admin/agents', 'auth');
+
+        $route->get(VotesController::class, [
+            '/race/{race}' => 'getRace'
+        ], 'admin');
     }
 }

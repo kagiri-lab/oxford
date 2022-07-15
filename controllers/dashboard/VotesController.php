@@ -13,10 +13,13 @@ class VotesController extends Controller
     public function getRace(Request $request, Response $response)
     {
         DashboardController::isAdmin();
-        $vote = Vote::findOne(['race' => '1']);
+        $race = $request->getRouteParam('race');
+        $vote = Vote::findOne(['race' => $race]);
+        $voteLogs = Vote::getAll(['position' => $race]);
         $this->setLayout('dashboard.main');
         return $this->render([
-            'votes' => $vote 
+            'votes' => $vote,
+            'voteLogs' => $voteLogs
         ], 'dashboard.votes.view');
     }
 }
