@@ -87,6 +87,7 @@ class VotesController extends Controller
         if ($request->isPost()) {
             $vote->loadData($request->get());
             $vote->candidate = $candidate->id;
+            $vote->race = $candidate->position;
 
             if ($agent) {
                 $vote->station = $agent->station;

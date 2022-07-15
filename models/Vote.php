@@ -10,6 +10,7 @@ class Vote extends UserModel
     public int $id = 0;
     public string $agent = '';
     public string $votes = '';
+    public string $race = '';
     public string $candidate = '';
     public string $station = '';
 
@@ -20,7 +21,7 @@ class Vote extends UserModel
 
     public function attributes(): array
     {
-        return ['agent', 'votes', 'candidate', 'station'];
+        return ['agent', 'votes', 'candidate', 'station', 'race'];
     }
 
     public function labels()
@@ -29,7 +30,8 @@ class Vote extends UserModel
             'agent' => 'Agent',
             'votes' => 'Candidate Total Votes',
             'candidate' => 'Candidate',
-            'station' => 'Polling Station'
+            'station' => 'Polling Station',
+            'race' => 'Race'
         ];
     }
 
@@ -39,7 +41,8 @@ class Vote extends UserModel
             'agent' => [self::RULE_REQUIRED],
             'votes' => [self::RULE_REQUIRED],
             'candidate' => [self::RULE_REQUIRED],
-            'station' => [self::RULE_REQUIRED]
+            'station' => [self::RULE_REQUIRED],
+            'race' => [self::RULE_REQUIRED]
         ];
     }
 

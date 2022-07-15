@@ -10,10 +10,9 @@ class DashboardController extends Controller
 {
     public function index()
     {
-
         DashboardController::isAdmin();
         $this->setLayout('dashboard.main');
-        return $this->render([], 'dashboard.index');
+        return $this->render([], 'dashboard.votes.view');
     }
 
     public static function isAdmin()
