@@ -55,7 +55,8 @@ if ($voteLogs)
                                             <td class="candidate"><?= $vl['candidate'] ?></td>
                                             <td class="votes"><?= $vl['votes'] ?></td>
                                             <td class="agent"><?= $vl['agent'] ?></td>
-                                            <td class="station"><?= $vl['station'] ?></td>
+                                            <td class="station"><?= $vl['station'] ?></td>                                            
+                                            <td class="station"><?= $vl['created_at'] ?></td>
                                         </tr>
                                     <?php } ?>
 
