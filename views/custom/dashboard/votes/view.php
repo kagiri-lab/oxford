@@ -2,7 +2,9 @@
 
 $this->title = "{{site-name}}";
 
-print_r($voteLogs);
+$hasLogs = false;
+if ($voteLogs)
+    $hasLogs = true;
 
 ?>
 
@@ -31,6 +33,42 @@ print_r($voteLogs);
                 </div>
             </div>
             <div class="card-body pe-xxl-0">
+                <?php
+                if ($hasLogs) { ?>
+                    <div id="tableExample2" data-list='{"valueNames":["name","email","age"],"page":5,"pagination":true}'>
+                        <div class="table-responsive scrollbar">
+                            <table class="table table-bordered table-striped fs--1 mb-0">
+                                <thead class="bg-200 text-900">
+                                    <tr>
+                                        <th class="sort" data-sort="candidate">Candidate</th>
+                                        <th class="sort" data-sort="votes">Votes</th>
+                                        <th class="sort" data-sort="agent">Agent</th>
+                                        <th class="sort" data-sort="station">Station</th>
+                                        <th class="sort" data-sort="date">Date - Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="list">
+                                    <?php
+                                    foreach ($voteLogs as $vlog => $vl) {
+                                    ?>
+                                        <tr>
+                                            <td class="candidate"><?= $vl['candidate'] ?></td>
+                                            <td class="votes"></td>
+                                            <td class="age">18</td>
+                                        </tr>
+                                    <?php } ?>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="d-flex justify-content-center mt-3"><button class="btn btn-sm btn-falcon-default me-1" type="button" title="Previous" data-list-pagination="prev"><span class="fas fa-chevron-left"></span></button>
+                            <ul class="pagination mb-0"></ul><button class="btn btn-sm btn-falcon-default ms-1" type="button" title="Next" data-list-pagination="next"><span class="fas fa-chevron-right"> </span></button>
+                        </div>
+                    </div>
+
+                <?php } else {
+                    echo "<p>No Logs</p>";
+                } ?>
 
             </div>
         </div>

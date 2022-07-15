@@ -47,7 +47,7 @@ if (!$this->title) {
 
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a class="nav-link scrollto" href="/votes">Submit Votes</a></li>
+
 
                     <?php
 
@@ -56,6 +56,7 @@ if (!$this->title) {
                     if (Application::isGuest()) : ?>
                         <li><a class="nav-link" href="/login">Login</a></li>
                     <?php else : ?>
+                        <li><a class="nav-link scrollto" href="/votes">Submit Votes</a></li>
                         <li>
                             <a class="nav-link" href="/logout">
                                 <?php echo Application::$app->user->getDisplayName() ?> (Logout)

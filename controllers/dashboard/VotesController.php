@@ -15,7 +15,7 @@ class VotesController extends Controller
         DashboardController::isAdmin();
         $race = $request->getRouteParam('race');
         $vote = Vote::findOne(['race' => $race]);
-        $voteLogs = Vote::getAll(['position' => $race]);
+        $voteLogs = Vote::find(['race' => $race]);
         $this->setLayout('dashboard.main');
         return $this->render([
             'votes' => $vote,
