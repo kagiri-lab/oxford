@@ -12,7 +12,7 @@ class DashboardController extends Controller
     {
         DashboardController::isAdmin();
         $this->setLayout('dashboard.main');
-        return $this->render([], 'dashboard.votes.view');
+        //return $this->render([], 'dashboard.votes.view');
     }
 
     public static function isAdmin()
