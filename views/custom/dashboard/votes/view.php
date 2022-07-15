@@ -53,8 +53,8 @@ if ($voteLogs)
                                     ?>
                                         <tr>
                                             <td class="candidate"><?= $vl['candidate'] ?></td>
-                                            <td class="votes"></td>
-                                            <td class="age">18</td>
+                                            <td class="votes"><?= $vl['votes'] ?></td>
+                                            <td class="agent"><?= $vl['agent'] ?></td>
                                         </tr>
                                     <?php } ?>
 
