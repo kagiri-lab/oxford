@@ -1,0 +1,17 @@
+{
+  "name": "kilyte/kilyte-php",
+  "authors": [
+    {
+      "name": "Kagiri",
+      "email": "kagiri@sharksight.co.ke"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "app\\": "./"
+    }
+  },
+  "require": {
+    "kilyte/kilyte-php-core": "^1.2"
+  }
+}
