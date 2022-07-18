@@ -23,7 +23,7 @@ foreach ($candidates as $cands => $cand)
                         $candvotes = $cand['votes'];
                         $candper = ($candvotes / $totalVotes) * 100;
                     ?>
-                        <div class="col-6 col-md-3">
+                        <div class="col-6">
                             <div class="card">
                                 <div class="card-body">
                                     <h6 class="pb-1 text-700"><?= $cand['firstname'] . ' ' . $cand['lastname'] ?> </h6>
