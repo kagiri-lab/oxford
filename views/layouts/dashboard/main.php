@@ -34,7 +34,7 @@ require('header.php'); ?>
                     <div class="toggle-icon-wrapper">
                         <button class="btn navbar-toggler-humburger-icon navbar-vertical-toggle" data-bs-toggle="tooltip" data-bs-placement="left" title="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
                     </div><a class="navbar-brand" href="/admin">
-                        <div class="d-flex align-items-center py-3"><span class="font-sans-serif">{{site-name}}</span>
+                        <div class="d-flex align-items-center py-3"><span class="font-sans-serif">Oxford</span>
                         </div>
                     </a>
                 </div>
@@ -60,8 +60,8 @@ require('header.php'); ?>
                 <nav class="navbar navbar-light navbar-glass navbar-top navbar-expand">
 
                     <button class="btn navbar-toggler-humburger-icon navbar-toggler me-1 me-sm-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="false" aria-label="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
-                    <a class="navbar-brand me-1 me-sm-3" href="../index.html">
-                        <div class="d-flex align-items-center"><span class="font-sans-serif">{{site-name}}</span>
+                    <a class="navbar-brand me-1 me-sm-3" href="/admin">
+                        <div class="d-flex align-items-center"><span class="font-sans-serif">Oxford</span>
                         </div>
                     </a>
                     

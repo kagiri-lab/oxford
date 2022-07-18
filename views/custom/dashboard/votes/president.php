@@ -7,8 +7,6 @@ if ($voteLogs)
     $hasLogs = true;
 
 $totalVotes = 0;
-foreach ($candidates as $cands => $cand)
-    $totalVotes = $totalVotes + $cand['votes'];
 
 ?>
 
@@ -20,16 +18,16 @@ foreach ($candidates as $cands => $cand)
 
                     <?php
                     foreach ($candidates as $cands => $cand) {
-                        $candvotes = $cand['votes'];
-                        $candper = ($candvotes / $totalVotes) * 100;
+                       
+
                     ?>
                         <div class="col-6 col-md-3">
                             <div class="card">
                                 <div class="card-body">
-                                    <h6 class="pb-1 text-700"><?= $cand['firstname'] . ' ' . $cand['lastname'] ?> </h6>
-                                    <p class="font-sans-serif lh-1 mb-1 fs-2"><?= $cand['votes'] ?> </p>
+                                    <h5 class="pb-1 text-700"><?= $cand['firstname'] . ' ' . $cand['lastname'] ?> </h5>
+                                    <p class="font-sans-serif lh-1 mb-1 fs-2">1,000 </p>
                                     <div class="d-flex align-items-center">
-                                        <h6 class="fs--1 text-500 mb-0"><?= number_format($candper, 2)  ?>% </h6>
+                                        <h6 class="fs--1 text-500 mb-0">21.8% </h6>
                                     </div>
                                 </div>
                             </div>
@@ -38,24 +36,9 @@ foreach ($candidates as $cands => $cand)
                     <?php } ?>
 
                     <div class="col-12">
-                        <br />
-                        <?php
-                        foreach ($candidates as $cands => $cand) {
-                            $candvotes = $cand['votes'];
-                            $candper = ($candvotes / $totalVotes) * 100;
-                        ?>
-                            <div class="row g-0 align-items-center pb-3">
-                                <div class="col pe-4">
-                                    <h6 class="text"><?= $cand['firstname'] . ' ' . $cand['lastname'] ?></h6>
-                                    <div class="progress" style="height:20px">
-                                        <div class="progress-bar rounded-3 bg-primary" role="progressbar" style="width: <?= number_format($candper, 2)  ?>%" aria-valuenow="<?= number_format($candper, 2)  ?>" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                                <div class="col-auto text-end text-bottom">
-                                    <p class="mb-0 text-900 font-sans-serif"><span class="badge bg-primary"><?= number_format($candper, 2)  ?>%</span></p>
-                                </div>
-                            </div>
-                        <?php } ?>
+                        <div class="progress" style="height:5px">
+                            <div class="progress-bar rounded-3 bg-primary" role="progressbar" style="width: 50% " aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
                     </div>
 
                 </div>
