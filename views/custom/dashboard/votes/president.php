@@ -21,7 +21,7 @@ $totalVotes = 0;
                        
 
                     ?>
-                        <div class="col-6 col-md-3">
+                        <div class="col-6">
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="pb-1 text-700"><?= $cand['firstname'] . ' ' . $cand['lastname'] ?> </h5>

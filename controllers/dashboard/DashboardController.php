@@ -18,7 +18,7 @@ class DashboardController extends Controller
         return $this->render([
             'candidates' => $details['candidates'],
             'voteLogs' => $details['voteLogs']
-        ], 'dashboard.votes.president');
+        ], 'dashboard.votes.view');
     }
 
     public static function isAdmin()
