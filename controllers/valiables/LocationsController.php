@@ -38,7 +38,7 @@ class LocationsController
             return $constituencies[$countyID];
     }
 
-    public static function returnCnstituencyName($countyID, $constituencyID): string
+    public static function returnConstituencyName($countyID, $constituencyID): string
     {
         $constituencies = self::getConstituenciesByCounty($countyID);
         if (key_exists($constituencyID, $constituencies))
@@ -56,5 +56,16 @@ class LocationsController
         $wards = self::getWards();
         if (key_exists($constituencyID, $wards))
             return $wards[$constituencyID];
+    }
+
+    public static function returnWardName($constituencyID, $wardID)
+    {
+        $constituency = self::getWardsByConstituency($constituencyID);
+        if ($constituency) {
+            if (is_array($constituency)) {
+                if (key_exists($wardID, $constituency))
+                    return $constituency[$wardID];
+            }
+        }
     }
 }

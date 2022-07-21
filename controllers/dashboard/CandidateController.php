@@ -68,8 +68,8 @@ class CandidateController extends Controller
         $voteLogs = Vote::find(['candidate' => $info->id]);
         foreach ($voteLogs as $vlogs => $vlog) {
             $agent = Agent::findOne(['id' => $vlog['agent']]);
-            $constituency = LocationsController::getConstituenciesByCounty($agent->county)[$agent->constituency];
-            $agent->ward = LocationsController::getWardsByConstituency($agent->constituency)[$agent->ward];
+            $constituency = LocationsController::returnConstituencyName($agent->county, $agent->constituency);
+            $agent->ward = LocationsController::returnWardName($agent->constituency, $agent->ward);
             $agent->constituency = $constituency;
             $voteLogs[$vlogs]['agent'] = $agent;
         }
