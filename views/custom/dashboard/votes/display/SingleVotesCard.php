@@ -18,7 +18,7 @@ class SingleVotesCard
         echo NumbersController::shorten($votes);
         echo '</div></div></div></div>';
         echo '<div class="col-lg-4 col-md-12 d-flex align-items-center">';
-        echo "<div class='fs-6 fw-normal font-sans-serif text-$color lh-6'>";
+        echo "<div class='fs-5 fw-normal font-sans-serif text-$color lh-6'>";
         echo "$percentage%";
         echo '</div></div></div></div></div></div>';
     }
