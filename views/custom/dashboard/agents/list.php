@@ -33,9 +33,9 @@ $this->title = "All Agents - {{site-name}}";
                         ?>
                             <tr>
                                 <td class="name"><?= $agt['firstname'] . ' ' . $agt['lastname'] ?></td>
-                                <td class="county"><?= $agt['county'] ?></td>
-                                <td class="constituency"><?= $agt['constituency'] ?></td>
-                                <td class="ward"><?= $agt['ward'] ?></td>
+                                <td class="county"><?= ucwords($agt['county']) ?></td>
+                                <td class="constituency"><?= ucwords($agt['constituency']) ?></td>
+                                <td class="ward"><?= ucwords($agt['ward']) ?></td>
                                 <td class="station"><?= $agt['station'] ?></td>
                                 <td class="created_at"><?= $agt['created_at'] ?></td>
                             </tr>

@@ -88,7 +88,7 @@ $this->title = "$candidate->firstname $candidate->lastname - {{site-name}}";
                             <h6 class="mb-0 mt-2 d-flex align-items-center"><?= $candidate->firstname . ' ' . $candidate->lastname ?> Vote Logs</h6>
                         </div>
                         <div class="card-body">
-                            <div id="tableExample2" data-list='{"valueNames":["name","email","age"],"page":5,"pagination":true}'>
+                            <div id="tableExample2" data-list='{"valueNames":["constituency","ward","station","votes","submited"],"page":20,"pagination":true}'>
                                 <div class="table-responsive scrollbar">
 
                                     <table class="table table-bordered table-striped fs--1 mb-0">
@@ -111,7 +111,7 @@ $this->title = "$candidate->firstname $candidate->lastname - {{site-name}}";
                                                     <td class="ward"><?= ucwords($agent->ward) ?></td>
                                                     <td class="station"><?= $agent->station ?></td>
                                                     <td class="votes"><?= $vlog['votes'] ?></td>
-                                                    <td class="votes"><?= $vlog['created_at'] ?></td>
+                                                    <td class="submited"><?= $vlog['created_at'] ?></td>
                                                 </tr>
                                             <?php } ?>
 

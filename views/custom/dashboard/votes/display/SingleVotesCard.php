@@ -44,4 +44,56 @@ class SingleVotesCard
         echo "<span class='badge bg-$color'>";
         echo "$percentage%</span></p></div></div></div>";
     }
+
+    public static function renderNoCandidates($text)
+    {
+
+        echo '<div class="row g-2 mt-4">';
+        echo '<div class="col-12 d-flex align-items-center">';
+        echo "<div class='fs-2 text-900 fw-normal font-sans-serif lh-5'>$text</div>";
+        echo "</div></div>";
+    }
+
+    public static function renderCandidates($list, $race)
+    {
+        $candidates = $list['canditates'];
+        $totalVotes = $list['totalVotes']; ?>
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="d-flex mb-4">
+                    <div class="col">
+                        <p class="mb-0"><?= $race ?> Candidates</p>
+                    </div>
+                </div>
+                <?php
+                if (count($candidates) > 0) { ?>
+                    <div class="py3 mb-3">
+                        <div class="row g-2">
+                            <?php
+                            foreach ($candidates as $cands => $cand) {
+                                $candper = NumbersController::percentage($totalVotes, $cand['votes']);
+                                $name = $cand['firstname'] . ' ' . $cand['lastname'];
+                                SingleVotesCard::renderCard($cand['id'], $name, $cand['votes'], $candper, $cand['color']);
+                            }
+                            ?>
+                        </div>
+                    </div>
+                    <div class="row g-2 mt-4">
+                        <div class="col-12 kanban-items-container">
+                            <?php
+                            foreach ($candidates as $cands => $cand) {
+                                $candvotes = $cand['votes'];
+                                $candper = NumbersController::percentage($totalVotes, $candvotes);
+                                $name = $cand['firstname'] . ' ' . $cand['lastname'];
+                                SingleVotesCard::renderProgress($cand['id'], $name, $candper, $cand['color']);
+                            } ?>
+                        </div>
+                    </div>
+                <?php } else
+                    SingleVotesCard::renderNoCandidates("No aspirants");
+                ?>
+            </div>
+        </div>
+<?php
+    }
 }

@@ -20,7 +20,7 @@ $this->title = "{{site-name}}"
 
                             <div class="row">
 
-                                <div id="tableExample2" data-list='{"valueNames":["name","email","status","created"],"page":5,"pagination":true}'>
+                                <div id="tableExample2" data-list='{"valueNames":["name","email","status","created", "agent"],"page":20,"pagination":true}'>
                                     <div class="table-responsive scrollbar">
                                         <table class="table table-bordered table-striped fs--1 mb-0">
                                             <thead class="bg-200 text-900">
@@ -28,6 +28,7 @@ $this->title = "{{site-name}}"
                                                     <th class="sort" data-sort="name">Name</th>
                                                     <th class="sort" data-sort="email">Email</th>
                                                     <th class="sort" data-sort="status">Status</th>
+                                                    <th class="sort" data-sort="agent">Agent</th>
                                                     <th class="sort" data-sort="created">Created On</th>
                                                 </tr>
                                             </thead>
@@ -37,9 +38,17 @@ $this->title = "{{site-name}}"
 
                                                 ?>
                                                     <tr class="btn-reveal-trigger">
-                                                        <td class="name"><a class="text-muted" href="/admin/agents/user/view/<?= $user['id'] ?>"><?= $user['firstname'] . ' ' . $user['lastname'] ?></td>
+                                                        <td class="name"><?= $user['firstname'] . ' ' . $user['lastname'] ?></td>
                                                         <td class="email"><?= $user['email'] ?></td>
                                                         <td class="status"><?= ($user['status']) ? 'Admin' : 'User' ?></td>
+                                                        <td class="agent">
+                                                            <?php
+                                                            if (!$user['agent']) { ?>
+                                                                <a class="btn btn-sm" href="/admin/agents/register/<?= $user['id'] ?>">
+                                                                    <span class="badge badge-soft-primary">Register As Agent</span>
+                                                                </a>
+                                                            <?php } ?>
+                                                        </td>
                                                         <td class="created"><?= $user['created_at'] ?></td>
                                                     </tr>
 

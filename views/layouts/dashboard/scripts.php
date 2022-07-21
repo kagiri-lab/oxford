@@ -22,6 +22,4 @@
 <script src="/assets/dashboard/vendors/lottie/lottie.min.js"></script>
 <script src="/assets/dashboard/vendors/draggable/draggable.bundle.legacy.js"></script>
 
-
-
-
+<script src="/js/locations.js"></script>

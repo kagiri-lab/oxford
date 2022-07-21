@@ -53,20 +53,20 @@ class Dashboard
         ], 'admin/candidates', 'auth');
 
         $route->get(AgentsController::class, [
-            '/register' => 'registerAgent',
+            '/register/{agent}' => 'registerAgent',
             '/list' => 'allAgents',
             '/users/all' => 'allUsers',
         ], 'admin/agents', 'auth');
 
         $route->post(AgentsController::class, [
-            '/register' => 'registerAgent'
+            '/register/{agent}' => 'registerAgent'
         ], 'admin/agents', 'auth');
 
         $route->get(VotesController::class, [
             '/race/presidential' => 'getPresidential',
             '/race/governor/{county}' => 'getCounty',
             '/race/{race}/{location}' => 'getDynamicRace',
-            '/locations/{location}/{id}' => 'getLocation'
+            '/locations/counties' => 'getLocation'
         ], 'admin');
     }
 }

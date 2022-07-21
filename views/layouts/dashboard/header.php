@@ -31,6 +31,7 @@ if (!$this->title) {
     <script src="/assets/dashboard/js/config.js"></script>
     <script src="/assets/dashboard/vendors/overlayscrollbars/OverlayScrollbars.min.js"></script>
     <script src="/assets/dashboard/vendors/choices/choices.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 
 

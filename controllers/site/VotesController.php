@@ -18,9 +18,17 @@ class VotesController extends Controller
 
     public function index()
     {
+        $user = Application::$app->user->id;
+        $votes = Vote::find(['agent' => $user]);
+
+        foreach ($votes as $vts => $vt) {
+            $candidate = Candidate::findOne(['id' => $vt['candidate']]);
+            $votes[$vts]['candidate'] = $candidate->firstname . ' ' . $candidate->lastname;
+        }
+
         $this->setLayout('site.user');
         return $this->render([
-            'votes' => ''
+            'votes' => $votes
         ], 'user.votes.index');
     }
 

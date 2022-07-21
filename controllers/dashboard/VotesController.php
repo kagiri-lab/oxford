@@ -8,6 +8,7 @@ use app\controllers\valiables\RaceController;
 use app\models\Agent;
 use app\models\Candidate;
 use app\models\Vote;
+use Exception;
 use kilyte\Controller;
 use kilyte\Http\Request;
 use kilyte\http\Response;
@@ -72,30 +73,23 @@ class VotesController extends Controller
     {
         DashboardController::isAdmin();
         $county = $request->getRouteParam('county');
+        $counties = LocationsController::getCounties();
+        if (!key_exists($county, $counties)) {
+            $response->redirect('/admin/locations/county/0');
+            return;
+        }
         $governors = Candidate::find(['position' => '2', 'county' => $county]);
         $senetors = Candidate::find(['position' => '3', 'county' => $county]);
-        $womenrep = Candidate::find(['position' => '2', 'county' => $county]);
+        $womenreps = Candidate::find(['position' => '4', 'county' => $county]);
         $constituencies = LocationsController::getConstituenciesByCounty($county);
-        $color = 0;
-        $totalVotes = 0;
-        foreach ($governors as $govs => $gov) {
-            $votes = $this->countVotes($gov['id']);
-            $totalVotes = $totalVotes + $votes;
-            $governors[$govs]['votes'] = $votes;
-            $governors[$govs]['color'] = ColorsController::getColor($color);
-            $color++;
-        }
-
 
         $this->setLayout('dashboard.main');
         return $this->render([
-            "race" => "2",
-            "candidates" => $governors,
+            "governors" => $this->setDynamicRows($governors),
             "county" => LocationsController::getCounties()[$county],
-            "senetors" => $senetors,
-            "womenrep" => $womenrep,
+            "senetors" => $this->setDynamicRows($senetors),
+            "womenreps" => $this->setDynamicRows($womenreps),
             "constituencies" => $constituencies,
-            "totalVotes" => $totalVotes,
             "voteLogs" => []
         ], 'dashboard.votes.race.county');
     }
@@ -145,25 +139,29 @@ class VotesController extends Controller
     public function getLocation(Request $request)
     {
         $location = $request->getRouteParam('location');
-        $id = $request->getRouteParam('id');
-        $list = [];
-        switch ($location) {
-            case "county":
-                $list = LocationsController::getCounties();
-                break;
-            case "constituency":
-                $list = LocationsController::getConstituenciesByCounty($id);
-                break;
-            case "ward":
-                $list = LocationsController::getWardsByConstituency($id);
-                break;
-            default:
-                break;
-        }
+        $list = LocationsController::getCounties();
         $this->setLayout('dashboard.main');
         return $this->render([
             'list' => $list,
             'location' => $location,
         ], 'dashboard.votes.locations');
+    }
+
+    public function setDynamicRows($candidates)
+    {
+        $tvotes = 0;
+        $color = 0;
+        foreach ($candidates as $cands => $cand) {
+            $votes = $this->countVotes($cand['id']);
+            $tvotes = $tvotes + $votes;
+            $candidates[$cands]['votes'] = $votes;
+            $candidates[$cands]['color'] = ColorsController::getColor($color);
+            $color++;
+        }
+
+        return [
+            "canditates" => $candidates,
+            "totalVotes" => $tvotes
+        ];
     }
 }

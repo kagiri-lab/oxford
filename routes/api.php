@@ -2,43 +2,25 @@
 
 namespace app\routes;
 
-use app\controllers\api\APIController;
-use app\controllers\AuthController;
-use app\controllers\SiteController;
-use app\controllers\UserController;
+use app\controllers\api\SelectLocationController;
 use kilyte\Application;
-use UserAPIController;
 
 class API
 {
 
-    private Application $app;
-
     public function __construct(Application $application)
     {
-        $this->app = $application;
-        $this->load();
+        $this->load($application->router);
     }
 
-    private function load()
+    private function load($router)
     {
-
-        $this->app->router->get(AuthController::class, [
+        $router->get(SelectLocationController::class, [
             '/' => 'index',
-            'users/list/{page}' => 'listAll'
-        ], 'api/');
+            '/counties' => 'getCounties',
+            '/county/{county}' => 'getConstituencies',
+            '/constituency/{constituency}' => 'getWards'
+        ], 'api');
 
-        $this->app->router->post(AuthController::class, [
-            '/' => 'index',
-            'login' => 'login',
-            'register' => 'register',
-            'token/generate' => 'generateToken'
-        ], 'api/');
-
-
-        $this->app->router->post(UserController::class, [
-            'profile' => 'profile',
-            'profile/{username}' => 'profileWithId'
-        ], 'api/user');
     }
 }

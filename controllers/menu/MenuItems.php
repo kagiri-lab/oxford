@@ -49,7 +49,7 @@ class MenuItems
             "Dashboard" => "/admin",
             "Votes" => [
                 "President" => "/admin/race/presidential",
-                "Counties" => "/admin/locations/county/0"
+                "Counties" => "/admin/locations/counties"
             ],
             "Candidates" => [
                 "List" => "/admin/candidates/list",
@@ -57,7 +57,6 @@ class MenuItems
             ],
             "Agents" => [
                 "List" => "/admin/agents/list",
-                "Register" => "/admin/agents/register",
                 "All Users" => "/admin/agents/users/all"
             ]
         ];

@@ -49,13 +49,8 @@ else
                                     }
                                 ?>
                                     <tr>
-                                        <?php
-                                        if ($second_location != "county") { ?>
-                                            <td class="code"><a href="/admin/locations/<?= $second_location ?>/<?= $lid ?>">#<?= sprintf("%03d", $lid) ?></a></td>
-                                        <?php } else { ?>
-                                            <td class="code">#<?= sprintf("%03d", $lid) ?></td>
-                                        <?php } ?>
-                                        <td class="name"><?= ucwords($lval) ?></td>
+                                        <td class="code"><a class="btn btn-sm" href="/admin/race/governor/<?= $lid ?>">#<?= sprintf("%03d", $lid) ?></a></td>
+                                        <td class="name"><a class="btn btn-sm" href="/admin/race/governor/<?= $lid ?>"><?= ucwords($lval) ?></a></td>
                                         <td><a href="/admin/race/governor/<?= $lid ?>"><span class="badge badge-soft-info">View Candidates</span></a></td>
                                     </tr>
                                 <?php
