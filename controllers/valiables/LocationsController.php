@@ -43,6 +43,8 @@ class LocationsController
         $constituencies = self::getConstituenciesByCounty($countyID);
         if (key_exists($constituencyID, $constituencies))
             return $constituencies[$constituencyID];
+        else
+            return $constituencyID;
     }
 
     public static function getWards(): array
