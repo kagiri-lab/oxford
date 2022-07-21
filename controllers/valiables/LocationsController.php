@@ -60,7 +60,7 @@ class LocationsController
             return $wards[$constituencyID];
     }
 
-    public static function returnWardName($constituencyID, $wardID)
+    public static function returnWardName($constituencyID, $wardID): string
     {
         $constituency = self::getWardsByConstituency($constituencyID);
         if ($constituency) {
