@@ -69,5 +69,6 @@ class LocationsController
                     return $constituency[$wardID];
             }
         }
+        return $wardID;
     }
 }
