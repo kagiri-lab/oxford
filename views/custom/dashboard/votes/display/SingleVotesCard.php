@@ -7,23 +7,25 @@ use app\controllers\valiables\NumbersController;
 class SingleVotesCard
 {
 
-    public static function renderCard($name, $votes, $percentage, $color = "primary")
+    public static function renderCard($id, $name, $votes, $percentage, $color = "primary")
     {
         echo '<div class="col-lg-12 col-xxl-6 col-xl-6 col-md-12 col-sm-12">';
-        echo "<div class='card border border-$color rounded-1'><div class='card-body'><div class='row'>";
+        echo "<div class='card border border-$color rounded-1 bg-$color'>";
+        echo "<a class='btn' href='/admin/candidates/view/$id'>";
+        echo "<div class='card-body'><div class='row'>";
         echo '<div class="col-lg-8 col-md-12 col-sm-12"><div class="row"><div class="col-lg-12">';
-        echo "<h3 class='pb-1 text-700'>$name</h3></div><hr/>";
+        echo "<h3 class='pb-1 text-100'>$name</h3></div><hr/>";
         echo '<div class="col-12">';
-        echo "<div class='fs-4 fw-normal font-sans-serif text-$color lh-1'>";
+        echo "<div class='fs-4 text-100 fw-normal font-sans-serif lh-1'>";
         echo NumbersController::shorten($votes);
         echo '</div></div></div></div>';
         echo '<div class="col-lg-4 col-md-12 d-flex align-items-center">';
-        echo "<div class='fs-5 fw-normal font-sans-serif text-$color lh-5'>";
+        echo "<div class='fs-5 text-100 fw-normal font-sans-serif lh-5'>";
         echo "$percentage%";
-        echo '</div></div></div></div></div></div>';
+        echo '</div></div></div></div></a></div></div>';
     }
 
-    public static function renderProgress($name, $percentage, $color = "primary")
+    public static function renderProgress($id, $name, $percentage, $color = "primary")
     {
         echo "<div class='kanban-item'>";
         echo '<div class="row g-0 align-items-center pb-3"><div class="col pe-4">';

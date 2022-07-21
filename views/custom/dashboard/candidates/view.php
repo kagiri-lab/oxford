@@ -1,8 +1,11 @@
 <?php
 
+use app\controllers\valiables\ColorsController;
+use app\controllers\valiables\LocationsController;
+use app\controllers\valiables\NumbersController;
 use app\controllers\valiables\PositionsController;
 
-$this->title = "{{site-name}}";
+$this->title = "$candidate->firstname $candidate->lastname - {{site-name}}";
 ?>
 
 <div class="row g-3 mb-3">
@@ -12,9 +15,9 @@ $this->title = "{{site-name}}";
             <div class="col">
 
                 <h5 class="mb-0 text-primary position-relative"><span class="bg-200 dark__bg-1100 pe-3">
-                        <?= $candidate->firstname . ' ' . $candidate->midname . ' ' . $candidate->lastname ?>
+                        <?= $candidate->firstname . ' ' . $candidate->lastname ?>
                     </span><span class="border position-absolute top-50 translate-middle-y w-100 start-0 z-index--1"></span></h5>
-                <p class="mb-0"><?= PositionsController::positions()[$candidate->position] ?></p>
+                <p class="mb-0"><?= PositionsController::positions()[$candidate->position] ?> <?= ($candidate->position != "1") ? ' - ' . LocationsController::returnCountyName($candidate->county) : '' ?></p>
 
             </div>
         </div>
@@ -24,15 +27,17 @@ $this->title = "{{site-name}}";
 
                 <div class="col-md-4">
                     <div class="card product-share-doughnut-width">
-                        <div class="card-header pb-0">
+                        <div class="card-header pb-0 d-flex justify-content-center">
                             <h6 class="mb-0 mt-2 d-flex align-items-center">Total Votes</h6>
                         </div>
                         <div class="card-body d-flex flex-column justify-content-end">
                             <div class="row align-items-end">
                                 <div class="col-12 d-flex justify-content-center">
-                                    <div class="fs-4 fw-normal font-sans-serif text-success lh-1"><?= number_format($candidate->votes) ?>
-                                        <hr />
+                                    <div class="fs-5 fw-normal font-sans-serif text-success lh-1"><?= NumbersController::shorten($candidate->votes) ?>
                                     </div>
+                                </div>
+                                <div class="col-12">
+                                    <hr />
                                 </div>
 
                                 <div class="col-12 d-flex justify-content-center">
@@ -51,20 +56,23 @@ $this->title = "{{site-name}}";
                                     <div class="fs--2 mt-3">
 
                                         <?php
+                                        $color = 0;
                                         foreach ($competitors as $comps => $comp) {
+                                            $colorName = ColorsController::getColor($color);
                                         ?>
                                             <div class="row g-0 align-items-center pb-3">
                                                 <div class="col pe-4">
-                                                    <h6 class="text"><?= $comp['firstname'] . ' ' . $comp['lastname'] ?> - (Votes : <?= $comp['votes'] ?>) - (<?= number_format($comp['percentage'], 2)  ?>%)</h6>
+                                                    <h6 class="text"><?= $comp['firstname'] . ' ' . $comp['lastname'] ?> - (<?= NumbersController::shorten($comp['votes']) ?>)</h6>
                                                     <div class="progress" style="height:5px">
-                                                        <div class="progress-bar rounded-3 bg-primary" role="progressbar" style="width: <?= number_format($comp['percentage'], 2)  ?>%" aria-valuenow="<?= number_format($comp['percentage'], 2)  ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        <div class="progress-bar rounded-3 bg-<?= $colorName ?>" role="progressbar" style="width: <?= number_format($comp['percentage'], 2)  ?>%" aria-valuenow="<?= number_format($comp['percentage'], 2)  ?>" aria-valuemin="0" aria-valuemax="100"></div>
                                                     </div>
                                                 </div>
                                                 <div class="col-auto text-end text-bottom">
-                                                    <p class="mb-0 text-900 font-sans-serif"><span class="badge bg-primary"><?= number_format($comp['percentage'], 2)  ?>%</span></p>
+                                                    <p class="mb-0 text-900 font-sans-serif"><span class="badge bg-<?= $colorName ?>"><?= number_format($comp['percentage'], 2)  ?>%</span></p>
                                                 </div>
                                             </div>
                                         <?php
+                                            $color++;
                                         }
                                         ?>
 
@@ -77,7 +85,7 @@ $this->title = "{{site-name}}";
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header pb-0">
-                            <h6 class="mb-0 mt-2 d-flex align-items-center">All Votes</h6>
+                            <h6 class="mb-0 mt-2 d-flex align-items-center"><?= $candidate->firstname . ' ' . $candidate->lastname ?> Vote Logs</h6>
                         </div>
                         <div class="card-body">
                             <div id="tableExample2" data-list='{"valueNames":["name","email","age"],"page":5,"pagination":true}'>

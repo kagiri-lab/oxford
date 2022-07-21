@@ -13,8 +13,7 @@ class ColorsController
             'success',
             'info',
             'warning',
-            'danger',
-            'dark'
+            'danger'
         ];
     }
 

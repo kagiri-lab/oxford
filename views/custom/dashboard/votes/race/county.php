@@ -1,17 +1,9 @@
 <?php
 
 use app\controllers\valiables\NumbersController;
-use app\controllers\valiables\PositionsController;
+use app\views\custom\dashboard\votes\display\SingleVotesCard;
 
-$this->title = "{{site-name}}";
-
-$hasLogs = false;
-if ($voteLogs)
-    $hasLogs = true;
-
-$totalVotes = 0;
-foreach ($candidates as $cands => $cand)
-    $totalVotes = $totalVotes + $cand['votes'];
+$this->title = "$county Candidates - {{site-name}}";
 
 ?>
 
@@ -26,83 +18,50 @@ foreach ($candidates as $cands => $cand)
         </div>
 
 
-        <div class="py3 mb-3">
-            <div class="row g-2">
-                <?php
-                if (count($candidates) > 0) {
-                    foreach ($candidates as $cands => $cand) {
-                        $candper = NumbersController::percentage($totalVotes, $cand['votes']);
-                ?>
-                        <div class="col-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-8">
-                                            <h4 class="pb-1 text-700"><?= $cand['firstname'] . ' ' . $cand['lastname'] ?> </h4>
-                                            <div class="fs-3 fw-normal font-sans-serif text-primary lh-6"><?= NumbersController::shorten($cand['votes']) ?></div>
-                                        </div>
-                                        <div class="col-4 d-flex justify-content-center">
-                                            <div class="fs-6 fw-normal font-sans-serif text-primary lh-6"><?= $candper  ?>%</div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                    <?php }
-                } else {
-                    ?>
-
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-8">
-                                        <div class="fs-3 fw-normal font-sans-serif text-primary lh-6">No candidates available</div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                <?php
-                } ?>
-            </div>
-        </div>
         <?php
         if (count($candidates) > 0) { ?>
-            <div class="card py-3 mb-3">
-                <div class="card-body py-3">
-                    <div class="row g-2">
+            <div class="py3 mb-3">
+                <div class="row g-2">
+                    <?php
+                    foreach ($candidates as $cands => $cand) {
+                        $candper = NumbersController::percentage($totalVotes, $cand['votes']);
+                        $name = $cand['firstname'] . ' ' . $cand['lastname'];
+                        SingleVotesCard::renderCard($cand['id'], $name, $cand['votes'], $candper, $cand['color']);
+                    }
+                    ?>
+                </div>
+            </div>
 
-                        <div class="col-12">
-                            <br />
-                            <?php
-                            foreach ($candidates as $cands => $cand) {
-                                $candvotes = $cand['votes'];
-                                $candper = 0;
-                                if ($totalVotes)
-                                    $candper = ($candvotes / $totalVotes) * 100;
-                            ?>
-                                <div class="row g-0 align-items-center pb-3">
-                                    <div class="col pe-4">
-                                        <h6 class="text"><?= $cand['firstname'] . ' ' . $cand['lastname'] ?> - (<?= $candvotes ?>)</h6>
-                                        <div class="progress" style="height:10px">
-                                            <div class="progress-bar rounded-3 bg-primary" role="progressbar" style="width: <?= number_format($candper, 2)  ?>%" aria-valuenow="<?= number_format($candper, 2)  ?>" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-auto text-end text-bottom">
-                                        <p class="mb-0 text-900 font-sans-serif"><span class="badge bg-primary"><?= number_format($candper, 2)  ?>%</span></p>
-                                    </div>
-                                </div>
-                            <?php } ?>
+            <div class="row g-2 mt-4">
+
+                <div class="col-12 kanban-items-container">
+                    <?php
+                    foreach ($candidates as $cands => $cand) {
+                        $candvotes = $cand['votes'];
+                        $candper = NumbersController::percentage($totalVotes, $candvotes);
+                        $name = $cand['firstname'] . ' ' . $cand['lastname'];
+
+                        SingleVotesCard::renderProgress($cand['id'], $name, $candper, $cand['color']);
+                    } ?>
+                </div>
+
+            </div>
+        <?php } else {
+        ?>
+            <div class="row g-2 mt-4">
+                <div class="col-12 d-flex align-items-center">
+                    <div class="card col-12">
+                        <div class="card-body">
+                            <div class="col-12 d-flex align-items-center">
+                                <div class='fs-5 text-900 fw-normal font-sans-serif lh-5'>No Candidates</div>
+                            </div>
                         </div>
-
                     </div>
                 </div>
             </div>
-        <?php } ?>
+
     </div>
+<?php
+        } ?>
+</div>
 </div>
