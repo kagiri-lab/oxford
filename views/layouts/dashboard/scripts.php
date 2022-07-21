@@ -19,3 +19,9 @@
 <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
 <script src="/assets/dashboard/vendors/list.js/list.min.js"></script>
 <script src="/assets/dashboard/js/theme.js"></script>
+<script src="/assets/dashboard/vendors/lottie/lottie.min.js"></script>
+<script src="/assets/dashboard/vendors/draggable/draggable.bundle.legacy.js"></script>
+
+
+
+

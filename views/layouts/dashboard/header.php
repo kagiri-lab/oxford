@@ -30,11 +30,18 @@ if (!$this->title) {
     <meta name="theme-color" content="#ffffff">
     <script src="/assets/dashboard/js/config.js"></script>
     <script src="/assets/dashboard/vendors/overlayscrollbars/OverlayScrollbars.min.js"></script>
+    <script src="/assets/dashboard/vendors/choices/choices.min.js"></script>
+
+
 
 
     <!-- ===============================================-->
     <!--    Stylesheets-->
     <!-- ===============================================-->
+
+
+    <link href="/assets/dashboard/vendors/choices/choices.min.css" rel="stylesheet" />
+
     <link href="/assets/dashboard/vendors/choices/choices.min.css" rel="stylesheet">
     <link href="/assets/dashboard/vendors/flatpickr/flatpickr.min.css" rel="stylesheet">
     <link href="/assets/dashboard/vendors/dropzone/dropzone.min.css" rel="stylesheet">

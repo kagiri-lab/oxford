@@ -1,5 +1,6 @@
 <?php
 
+use app\controllers\valiables\LocationsController;
 use kilyte\form\Form;
 
 $this->title = "{{site-name}}"
@@ -56,21 +57,58 @@ $this->title = "{{site-name}}"
                                     </div>
 
                                     <div class="col-lg-6">
-                                        <label class="form-label">County</label>
-                                        <select name="county" class="form-select">
-                                        </select>
+                                        <div class="mb-3"><label for="county">County</label>
+                                            <select class="form-select js-choice" id="county" size="1" required="required" name="county" data-options='{"removeItemButton":true,"placeholder":true}'>
+                                                <option value="">Select County...</option>
+                                                <?php
+                                                $counties = LocationsController::getCounties();
+                                                foreach ($counties as $countyID => $countyName)
+                                                    echo "<option value='$countyID'>$countyName</option>";
+                                                ?>
+                                            </select>
+                                            <div class="invalid-feedback">Please select one</div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-lg-6">
+                                        <div class="mb-3"><label for="county">Constituency</label>
+                                            <select class="form-select js-choice" id="county" size="1" required="required" name="constituency" data-options='{"removeItemButton":true,"placeholder":true}'>
+                                                <option value="">Select Constituency...</option>
+                                                <?php
+                                                $constituencies = LocationsController::getConstituencies();
+                                                foreach ($constituencies as $countyid => $constList) {
+                                                    if (is_array($constList)) {
+                                                        foreach ($constList as $cnid => $cnname) {
+                                                            $cn = ucwords($cnname);
+                                                            echo "<option value='$cnid'>$cn</option>";
+                                                        }
+                                                    }
+                                                }
+                                                ?>
+                                            </select>
+                                            <div class="invalid-feedback">Please select one</div>
+                                        </div>
                                     </div>
 
                                     <div class="col-lg-6">
-                                        <label class="form-label">Constituency</label>
-                                        <select name="constituency" class="form-select">
-                                        </select>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <label class="form-label">Ward</label>
-                                        <select name="ward" class="form-select">
-                                        </select>
+                                        <div class="mb-3"><label for="county">Ward</label>
+                                            <select class="form-select js-choice" id="ward" size="1" required="required" name="ward" data-options='{"removeItemButton":true,"placeholder":true}'>
+                                                <option value="">Select Ward...</option>
+                                                <?php
+                                                $wards = LocationsController::getWards();
+                                                foreach ($wards as $countyid => $constList) {
+                                                    if (is_array($constList)) {
+                                                        foreach ($constList as $cnid => $cnname) {
+                                                            $cn = ucwords($cnname);
+                                                            echo "<option value='$cnid'>$cn</option>";
+                                                        }
+                                                    }
+                                                }
+                                                ?>
+                                            </select>
+                                            <div class="invalid-feedback">Please select one</div>
+                                        </div>
                                     </div>
 
                                     <div class="col-lg-6 mt-4">

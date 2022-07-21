@@ -6,19 +6,16 @@ use Exception;
 use kilyte\Application;
 use kilyte\Controller;
 use kilyte\Http\Request;
+use kilyte\http\Response;
 
 class DashboardController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request, Response $response)
     {
-        DashboardController::isAdmin();
-        $votesDetails = new VotesController;
-        $details = $votesDetails->raceDetails('1');
+        
         $this->setLayout('dashboard.main');
-        return $this->render([
-            'candidates' => $details['candidates'],
-            'voteLogs' => $details['voteLogs']
-        ], 'dashboard.votes.view');
+        $votes = new VotesController;
+        return $votes->getPresidential($request, $response);
     }
 
     public static function isAdmin()

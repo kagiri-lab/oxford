@@ -63,7 +63,10 @@ class Dashboard
         ], 'admin/agents', 'auth');
 
         $route->get(VotesController::class, [
-            '/race/{race}' => 'getRace'
+            '/race/presidential' => 'getPresidential',
+            '/race/governor/{county}' => 'getCounty',
+            '/race/{race}/{location}' => 'getDynamicRace',
+            '/locations/{location}/{id}' => 'getLocation'
         ], 'admin');
     }
 }

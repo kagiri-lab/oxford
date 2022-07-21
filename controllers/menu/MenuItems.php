@@ -48,8 +48,8 @@ class MenuItems
         return [
             "Dashboard" => "/admin",
             "Votes" => [
-                "President" => "/admin/race/1",
-                "Governor" => "/admin/race/2"
+                "President" => "/admin/race/presidential",
+                "Counties" => "/admin/locations/county/0"
             ],
             "Candidates" => [
                 "List" => "/admin/candidates/list",
