@@ -1,6 +1,6 @@
 <?php
 $this->title = "All Agents - {{site-name}}";
-
+print_r($agents);
 ?>
 
 <div class="row g-3 mb-3">
