@@ -36,8 +36,11 @@ class AgentsController extends Controller
     public function allAgents(Request $request, Response $response)
     {
         DashboardController::isAdmin();
+        $agents = Agent::getAll();
         $this->setLayout('dashboard.main');
-        return $this->render([], 'dashboard.agents.list');
+        return $this->render([
+            'agents' => $agents
+        ], 'dashboard.agents.list');
     }
 
     public function allUsers(Request $request, Response $response)
