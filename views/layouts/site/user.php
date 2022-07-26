@@ -88,7 +88,7 @@ if (!$this->title) {
                 <ul id="forms-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                     <li> <a href="/votes/candidates/1"> <i class="bi bi-circle"></i><span>President</span> </a></li>
                     <li> <a href="/votes/candidates/2"> <i class="bi bi-circle"></i><span>Governor</span> </a></li>
-                    <li> <a href="/votes/candidates/3"> <i class="bi bi-circle"></i><span>Senetor</span> </a></li>
+                    <li> <a href="/votes/candidates/3"> <i class="bi bi-circle"></i><span>Senator</span> </a></li>
                     <li> <a href="/votes/candidates/4"> <i class="bi bi-circle"></i><span>Women Rep</span> </a></li>
                     <li> <a href="/votes/candidates/5"> <i class="bi bi-circle"></i><span>MP</span> </a></li>
                     <li> <a href="/votes/candidates/6"> <i class="bi bi-circle"></i><span>MCA</span> </a></li>

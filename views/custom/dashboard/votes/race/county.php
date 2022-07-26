@@ -19,9 +19,41 @@ $this->title = "$county Candidates - {{site-name}}";
 
         <?php
         SingleVotesCard::renderCandidates($governors, "Governors");
-        SingleVotesCard::renderCandidates($senetors, "Senetors");
+        SingleVotesCard::renderCandidates($senators, "Senator");
         SingleVotesCard::renderCandidates($womenreps, "Women Representative");
+
         ?>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="col">
+                    <p class="mb-4">Member Of Pariament Candidates</p>
+                    <?php
+
+                    foreach ($constituency as $conts => $cont) {
+                        $constName = ucwords($conts . ' Constituency');
+                        if (count($cont['canditates']) > 0) { ?>
+                            <div class='card mb-2'>
+                                <div class='card-body row'>
+                                    <div class="col-lg-5 col-md-12 col-sm-12">
+                                        <?= SingleVotesCard::renderMPTableCandidates($cont, $constName) ?>
+                                    </div>
+                                    <div class="col-lg-7 col-md-12 col-sm-12">
+                                        <?php
+                                        foreach ($cont['wards'] as $wards => $ward)
+                                            SingleVotesCard::renderWardTableCandidates($ward, ucwords($wards). ' Ward');
+
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>
+                    <?php
+                        }
+                    }
+                    ?>
+                </div>
+            </div>
+        </div>
 
     </div>
 </div>

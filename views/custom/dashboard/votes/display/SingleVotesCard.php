@@ -94,6 +94,100 @@ class SingleVotesCard
                 ?>
             </div>
         </div>
+    <?php
+    }
+
+    public static function renderMPTableCandidates($list, $race)
+    {
+        $candidates = $list['canditates'];
+        $totalVotes = $list['totalVotes'];
+    ?>
+        <div class="d-flex mb-2">
+            <div class="col">
+                <p class="mb-0"><strong><?= $race ?> Candidates</strong></p>
+            </div>
+        </div>
+        <?php
+        if (count($candidates) > 0) { ?>
+
+            <div id="tableExample2" data-list='{"valueNames":["name","votes","percentage"],"page":5,"pagination":true}'>
+                <div class="table-responsive scrollbar">
+                    <table class="table table-bordered table-striped fs--1 mb-0">
+                        <thead class="bg-200 text-900">
+                            <tr>
+                                <th class="sort" data-sort="name">Name</th>
+                                <th class="sort" data-sort="votes">Votes</th>
+                                <th class="sort" data-sort="percentage">%</th>
+                            </tr>
+                        </thead>
+                        <tbody class="list">
+                            <?php
+                            foreach ($candidates as $cands => $cand) {
+                                $candper = NumbersController::percentage($totalVotes, $cand['votes']);
+                                $name = $cand['firstname'] . ' ' . $cand['lastname'];
+                            ?>
+                                <tr>
+                                    <td class="name"><?= $name ?></td>
+                                    <td class="votes"><?= NumbersController::shorten($cand['votes']) ?></td>
+                                    <td class="percentage"><?= $candper ?>%</td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        <?php } else
+            SingleVotesCard::renderNoCandidates("No aspirants");
+        ?>
+    <?php
+    }
+
+    public static function renderWardTableCandidates($list, $race)
+    {
+        $candidates = $list['canditates'];
+        $totalVotes = $list['totalVotes'];
+    ?>
+        <div class="d-flex mb-2">
+            <div class="col">
+                <p class="mb-0"><strong><?= $race ?> Candidates</strong></p>
+            </div>
+        </div>
+        <?php
+        if (count($candidates) > 0) { ?>
+
+            <div id="tableExample2" data-list='{"valueNames":["name","votes","percentage","ward"],"page":5,"pagination":true}'>
+                <div class="table-responsive scrollbar">
+                    <table class="table table-bordered table-striped fs--1 mb-0">
+                        <thead class="bg-200 text-900">
+                            <tr>
+                                <th class="sort" data-sort="name">Name</th>
+                                <th class="sort" data-sort="votes">Votes</th>
+                                <th class="sort" data-sort="percentage">%</th>
+                                <th class="sort" data-sort="ward">Ward</th>
+                            </tr>
+                        </thead>
+                        <tbody class="list">
+                            <?php
+                            foreach ($candidates as $cands => $cand) {
+                                $candper = NumbersController::percentage($totalVotes, $cand['votes']);
+                                $name = $cand['firstname'] . ' ' . $cand['lastname'];
+                            ?>
+                                <tr>
+                                    <td class="name"><?= $name ?></td>
+                                    <td class="votes"><?= NumbersController::shorten($cand['votes']) ?></td>
+                                    <td class="percentage"><?= $candper ?>%</td>
+                                    <td class="ward"><?= $candper ?>%</td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        <?php } else
+            echo "<p>No aspirants</p>";
+        ?>
 <?php
     }
 }

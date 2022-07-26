@@ -45,7 +45,7 @@ $this->title = "Register Candindate - {{site-name}}"
                                     <select name="position" id="positionSelect" onselect="checkthh" class="form-select">
                                         <option value="1">President</option>
                                         <option value="2">Governor</option>
-                                        <option value="3">Senetor</option>
+                                        <option value="3">Senator</option>
                                         <option value="4">Women Rep</option>
                                         <option value="5">MP</option>
                                         <option value="6">MCA</option>

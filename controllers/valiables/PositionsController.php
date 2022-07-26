@@ -8,10 +8,10 @@ class PositionsController{
     public static function positions(): array
     {
         return [
-            "Null",
+            "",
             "President",
             "Governor",
-            "Senetor",
+            "Senator",
             "Women Rep",
             "Member Of Pariament",
             "Member Of County Assembly"

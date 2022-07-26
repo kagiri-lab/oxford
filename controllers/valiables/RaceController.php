@@ -10,7 +10,7 @@ class RaceController
         return [
             "president",
             "governor",
-            "senetor",
+            "senator",
             "women rep",
             "MP",
             "MCA"
@@ -22,7 +22,7 @@ class RaceController
         return [
             "county" => [
                 "governor",
-                "senetor",
+                "senator",
                 "women rep"
             ],
             "constituency" => [

@@ -79,17 +79,32 @@ class VotesController extends Controller
             return;
         }
         $governors = Candidate::find(['position' => '2', 'county' => $county]);
-        $senetors = Candidate::find(['position' => '3', 'county' => $county]);
+        $senators = Candidate::find(['position' => '3', 'county' => $county]);
         $womenreps = Candidate::find(['position' => '4', 'county' => $county]);
         $constituencies = LocationsController::getConstituenciesByCounty($county);
+
+        $constituency = [];
+        foreach ($constituencies as $consts => $const) {
+            $consCands = Candidate::find(['position' => '5', 'constituency' => $consts]);
+            $constDetails = $this->setDynamicRows($consCands);
+            $constituency[$const] = $constDetails;
+            $wards = LocationsController::getWardsByConstituency($consts);
+            foreach ($wards as $wds => $wd) {
+                $wdscands = Candidate::find(['position' => '6', 'ward' => $wds]);
+                $wardmcas = $this->setDynamicRows($wdscands);
+                $constituency[$const]['wards'][$wd] = $wardmcas;
+            }
+
+            //print_r($wards);
+        }
 
         $this->setLayout('dashboard.main');
         return $this->render([
             "governors" => $this->setDynamicRows($governors),
             "county" => LocationsController::getCounties()[$county],
-            "senetors" => $this->setDynamicRows($senetors),
+            "senators" => $this->setDynamicRows($senators),
             "womenreps" => $this->setDynamicRows($womenreps),
-            "constituencies" => $constituencies,
+            "constituency" => $constituency,
             "voteLogs" => []
         ], 'dashboard.votes.race.county');
     }
